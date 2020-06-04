@@ -1,6 +1,6 @@
 # homeapplication
 
-> A Vue.js project
+> 一个基于Vue+webpack的项目改造项目
 
 ## Build Setup
 
@@ -23,5 +23,5 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#20200604
+搭建基本框架，axios的2次封装（未完成）。

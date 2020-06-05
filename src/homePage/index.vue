@@ -3,6 +3,7 @@
     <div class="">
         <page-header></page-header>
         <router-view/>
+        <home-work></home-work>
     </div>
   </div>
 </template>
@@ -10,10 +11,11 @@
 
 <script>
 import pageHeader from "@/components/headerTop";
+import homeWork from "@/components/homeWork";
 
 export default {
   components: {
-    pageHeader,
+    pageHeader,homeWork,
   },
   data() {
     return {

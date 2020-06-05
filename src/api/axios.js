@@ -69,9 +69,10 @@ function successState (res) {
 
 // 封装axios--------------------------------------------------------------------------------------
 function apiAxios (method, url, params) {
+  console.log(method, url, params,'ffffffffffffffffffffffffffffffffffffffffff')
   let httpDefault = {
     method: method,
-    baseURL: baseURL,
+    // baseURL: baseURL,
     url: url,
     // `params` 是即将与请求一起发送的 URL 参数
     // `data` 是作为请求主体被发送的数据

@@ -9,7 +9,10 @@ import ElementUI from 'element-ui'
 import axiosApi from '@/api/axios.js'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/reset.css'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
+Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
 Vue.use(echarts);//后期可以使用vue-echarts，按需引入

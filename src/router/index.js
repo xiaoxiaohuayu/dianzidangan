@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import headerTop from '@/components/headerTop'
+import menuBar from '@/components/menuBar'
+import index from '@/homePage/index'
 
 Vue.use(Router)
 
@@ -8,8 +10,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'index',
+      component: index,
+      redirect: '/homePage/index',
+      children: [
+        //首页
+        { path: '/homePage/index', component: menuBar, name: 'menuBar' },
+      ]
     }
   ]
 })

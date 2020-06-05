@@ -2,27 +2,35 @@
   <div class="header_title">
     <div class="logo-title area">
       <div class="logo left">
-        <a href="https://test.sxqcwx.com/" target="_blank">首页</a>
+        <!-- <a href="https://test.sxqcwx.com/" target="_blank">首页</a> -->
       </div>
-      <img :src="useriocn">
-      <div class="links-list-wrap" data-spm="top-func-link">
+      <div class="links-list-wrap clear">
         <ul class="links">
           <a>
             <li class="link shh">
-              <div class="icon"></div>
+              <div class="icon">
+                <img :src="useriocn">
+              </div>
               <div class="title">用户登录</div>
             </li>
           </a>
           <a>
-            <li class="link sougou">
-              <div class="icon"></div>
+            <li class="link register">
+              <div class="icon">
+                <img :src="useriocn">
+              </div>
               <div class="title">用户注册</div>
             </li>
           </a>
           <a>
-            <li class="link sohu_email">
-              <div class="icon"></div>
+            <li class="link wechat" 
+            @mouseover="overShow"
+            @mouseout="outHide">
+              <div class="icon">
+                <img :src="useriocn">
+              </div>
               <div class="title">官方微信</div>
+              <img :src="wechat" class="wechatcode" :class="isshow ? null : 'isshow'">
             </li>
           </a>
         </ul>
@@ -32,15 +40,15 @@
 </template>
 
 <script>
-  var user = require('../assets/iocn/user.png');
-  console.log(user)
+var user = require('../assets/iocn/user.png');
+var wechat = require('../assets/img/wechat.jpg');
 export default {
-
-  
   name: "HelloWorld",
   data() {
     return {
       useriocn: user,
+      wechat:wechat,
+      isshow:false,
     };
   },
   mounted() {
@@ -51,6 +59,15 @@ export default {
       this.postAxios("/api/findRegion2", {}, res => {
         console.log(res);
       });
+      this.getAxios('/api/maintenancerecord/countList',null,res => {
+        console.log(res)
+      });
+    },
+    overShow(){
+      this.isshow = true
+    },
+    outHide(){
+      this.isshow = false;
     }
   }
 };
@@ -58,6 +75,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.header_title{
+  margin-bottom: 16px;
+}
 .logo-title{
   height: 80px;
 }
@@ -67,15 +87,16 @@ export default {
 }
 .logo{
     width: 548px;
-    height: 64px;
+    height: 50px;
     overflow: hidden;
     line-height: 500px;
     margin-top: 28px;
     background: url('http://vunion.sxqcwx.com/common/new.png') no-repeat 0 0;
+    background-size: 88%;
 }
 .links-list-wrap {
     float: right;
-    margin-top: 28px;
+    margin-top: 38px;
 }
 .links a {
   display: inline-block;
@@ -87,17 +108,28 @@ export default {
   float: left;
   padding: 0 10px;
   cursor: pointer;
+  width: 88px;
+  font-size: 16px;
+  line-height: 17px;
 }
 .link .icon{
   float: left;
   background-image:('/assets/iocn/user.png');
-  width: 30px;
-  height: 30px;
+  width: 17px;
+  height: 17px;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
   display: inline-block;
   vertical-align: top;
   overflow: hidden;
+}
+.wechatcode{
+  width: 100px;
+  position: absolute;
+  left: -2px;
+}
+.isshow{
+  display: none;
 }
 </style>

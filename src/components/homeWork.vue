@@ -3,9 +3,10 @@
         <div class="ifBCPub" style="margin-right: 29px;">
             <span>公共服务</span>
         </div>
-        <div class="publicservice" v-for="(i,index) in meunbarList" :key="i.index" 
-        @mouseover="overShow(index)">
-            <div class="zw_server"></div>
+        <div ref="publicservice" class="publicservice" v-for="(i,index) in meunbarList" :key="i.index" 
+        @mouseover="overShow(index,i)"
+        @mouseout="outHide(index,i)">
+            <!-- <div class="zw_server" :class=" ? : "></div> -->
             <span class="title_server">{{ i.text }}</span>
         </div>
     </div>
@@ -23,7 +24,7 @@ export default {
                 // {text:"信誉考核",},
                 // {text:"优秀企业展示",},
             ], 
-            
+            isText:false,
         }
     },
     created() {
@@ -36,13 +37,15 @@ export default {
         })
     },
     computed: {
-      swiper() {
-        return this.$refs.mySwiper.$swiper
-      }
+ 
     },
     methods:{
-        overShow(index){
-            console.log(index)
+        overShow(index,e){
+            console.log(index,this.$refs.publicservice);
+            this.$refs.publicservice[index].children[0].style = 'display: none;'
+        },
+        outHide(index,e){
+            this.$refs.publicservice[index].children[0].style = 'display: blck;'
         }
     },
     updated: function () {
@@ -58,18 +61,27 @@ export default {
     display: inline-block;
 }
 .publicservice:hover{
-    
+    background-image: url('~@/assets/iocn/zwfw.png');
+    background-repeat: no-repeat;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    box-shadow: 0 1px 5px #888;
+    background-size: 100%;
+    border-radius: 6px;
+    cursor: pointer;
 }
 .publicservice{
+    position: relative;
     background: #fff;
     background-image: url('~@/assets/iocn/zwfw1.png');
     background-repeat: no-repeat;
-    background-position-x: 25px;
+    background-position-x: 36px;
     background-position-y: 21px;
     box-shadow: 0 1px 5px #888;
-    background-size: 66%;
+    background-size: 54%;
     border-radius: 6px;
-
+    text-align: center;
+    margin: 0 14px 0px 14px;
 }
 .zw_server{
     width: 162px;
@@ -83,5 +95,12 @@ export default {
     background-size: 100%;
     border-radius: 6px;
     cursor: pointer;
+}
+.title_server{
+    margin: 0 auto;
+    position: absolute;
+    bottom: 14px;
+    left: 54px;
+    font-size: 14px;
 }
 </style>
